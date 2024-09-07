@@ -1,5 +1,6 @@
 import turtle
 import os
+import time
 import random
 
 # draw screen
@@ -9,7 +10,7 @@ screen.bgcolor("black")
 screen.setup(width=800, height=600)
 screen.tracer(0)
 
-# draw paddle 1
+# draw paddle 1 left
 paddle_1 = turtle.Turtle()
 paddle_1.speed(0)
 paddle_1.shape("square")
@@ -18,7 +19,7 @@ paddle_1.shapesize(stretch_wid=5, stretch_len=1)
 paddle_1.penup()
 paddle_1.goto(-350, 0)
 
-# draw paddle 2
+# draw paddle 2 right
 paddle_2 = turtle.Turtle()
 paddle_2.speed(0)
 paddle_2.shape("square")
@@ -29,13 +30,13 @@ paddle_2.goto(350, 0)
 
 # draw ball
 ball = turtle.Turtle()
-ball.speed(0)
+ball.speed(5)
 ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 ball.dx = 1
-ball.dy = 1
+ball.dy = -1
 
 # score
 score_1 = 0
@@ -97,6 +98,7 @@ screen.onkeypress(paddle_2_down, "Down")
 
 while True:
     screen.update()
+    time.sleep(0.01) #add time for make the game smooth
 
     # ball movement
     ball.setx(ball.xcor() + ball.dx)
@@ -135,7 +137,7 @@ while True:
     # collision with the paddle 1
     if ball.xcor() < -330 and paddle_1.ycor() + 50 > ball.ycor() > paddle_1.ycor() - 50:
         ball.dx *= -1
-        ball.dy += random.uniform(-0.5, 0.5) #muda ligeiramente o movimento da bola
+        ball.dy += random.uniform(-0.5, 0.5) #change the direction of the ball
         os.system("afplay bounce.wav&")
 
     # collision with the paddle 2
@@ -143,5 +145,3 @@ while True:
         ball.dx *= -1
         ball.dy += random.uniform(-0.5, 0.5)
         os.system("afplay bounce.wav&")
-
-
