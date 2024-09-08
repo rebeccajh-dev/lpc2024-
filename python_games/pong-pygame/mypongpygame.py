@@ -169,13 +169,13 @@ while game_loop:
         # player 2 "Artificial Intelligence"
         player_2_dy = random.uniform(1, 5)
         if ball_dx >= 0:
-            if player_2_y > ball_y + random.uniform(-10, 10):
+            if player_2_y > ball_y + random.uniform(1, 5):
                 player_2_y -= player_2_dy
-            elif player_2_y < ball_y + random.uniform(-10, 10):
+            elif player_2_y < ball_y + random.uniform(1, 5):
                 player_2_y += player_2_dy
 
         # update score hud
-        score_text = score_font.render(str(score_1) + ' x ' + str(score_2), True, COLOR_WHITE, COLOR_BLACK)
+        score_text = score_font.render(str(score_1) + ' x ' + str(score_2), True, COLOR_WHITE)
 
         # drawing objects
         screen.blit(ball, (ball_x, ball_y))
